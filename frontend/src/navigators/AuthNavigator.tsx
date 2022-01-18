@@ -1,9 +1,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import welcomeScreen from '@modules/welcome/Welcome';
-import LoginScreen from '@modules/auth/login/Login';
-import RegisterScreen from '@modules/auth/register/Register';
+import welcomeScreen from '@screens/welcome/Welcome';
+import LoginScreen from '@screens/auth/login/Login';
+import RegisterScreen from '@screens/auth/register/Register';
 import {RouteNames} from '@config/routes';
 import {DashboardNavigator} from './DashboardNavigator';
 

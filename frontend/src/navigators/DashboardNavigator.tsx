@@ -2,10 +2,10 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import postList from '@modules/post/postList/PostList';
-import profile from '@modules/profile/Profile';
+import postList from '@screens/post/postList/PostList';
+import profile from '@screens/profile/Profile';
 import {RouteNames} from '@config/routes';
-import CreatePost from '@modules/post/createPost/CreatePost';
+import CreatePost from '@screens/post/createPost/CreatePost';
 
 const Tab = createBottomTabNavigator();
 
