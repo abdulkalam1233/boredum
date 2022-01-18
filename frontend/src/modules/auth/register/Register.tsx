@@ -4,9 +4,10 @@ import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {Image} from 'react-native';
 import * as yup from 'yup';
+import {Input} from 'react-native-elements';
 
 import AppButton from '@components/AppButton';
-import AppInputText from '@components/AppInputText';
+// import AppInputText from '@components/AppInputText';
 import FormErrorMessage from '@components/FormErrorMessage';
 import Screen from '@components/Screen';
 import colors from '@config/color';
@@ -41,13 +42,26 @@ const RegisterScreen = () => {
         // error={errors?.name}
         name="name"
         render={({field: {onChange, onBlur, value}}) => (
-          <AppInputText
-            value={value}
-            onblur={onBlur}
+          // <AppInputText
+          //   value={value}
+          //   onblur={onBlur}
+          //   onChangeText={onChange}
+          //   autoCapitalize="none"
+          //   autoCorrect={false}
+          //   placeholder={'Name'}
+          // />
+          <Input
+            placeholder="Name"
+            leftIcon={{
+              type: 'ant-design',
+              name: 'user',
+              color: colors.primary,
+              size: 18,
+            }}
             onChangeText={onChange}
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder={'Name'}
+            autoCompleteType={false}
+            onBlur={onBlur}
+            value={value}
           />
         )}
       />
@@ -55,15 +69,16 @@ const RegisterScreen = () => {
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <AppInputText
-            // defaultValue={value}
-            autoCapitalize="none"
-            autoCorrect={false}
-            // icon="email"
+          <Input
             placeholder="Email"
-            keyboardType="email-address"
-            textContentType="emailAddress"
+            leftIcon={{
+              type: '',
+              name: 'email',
+              color: colors.primary,
+              size: 18,
+            }}
             onChangeText={onChange}
+            autoCompleteType={false}
             onBlur={onBlur}
             value={value}
           />
@@ -76,17 +91,30 @@ const RegisterScreen = () => {
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <AppInputText
-            autoCapitalize="none"
-            autoCorrect={false}
-            // icon="lock"
+          // <AppInputText
+          //   autoCapitalize="none"
+          //   autoCorrect={false}
+          //   // icon="lock"
+          //   placeholder="Password"
+          //   keyboardType="default"
+          //   secureTextEntry
+          //   textContentType="password"
+          //   onChangeText={onChange}
+          //   onBlur={onBlur}
+          //   value={value}
+          // />
+          <Input
             placeholder="Password"
-            keyboardType="default"
-            secureTextEntry
-            textContentType="password"
+            leftIcon={{
+              type: 'font-awesome',
+              name: 'lock',
+              color: colors.primary,
+            }}
             onChangeText={onChange}
+            autoCompleteType={false}
             onBlur={onBlur}
             value={value}
+            secureTextEntry
           />
         )}
         name="password"

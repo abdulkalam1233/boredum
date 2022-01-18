@@ -4,9 +4,10 @@ import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {useDispatch} from 'react-redux';
+import {Input} from 'react-native-elements';
 
 import AppButton from '@components/AppButton';
-import AppInputText from '@components/AppInputText';
+// import AppInputText from '@components/AppInputText';
 import Screen from '@components/Screen';
 import FormErrorMessage from '@components/FormErrorMessage';
 import colors from '@config/color';
@@ -44,15 +45,28 @@ export default function LoginScreen({navigation}: any) {
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <AppInputText
-            // defaultValue={value}
-            autoCapitalize="none"
-            autoCorrect={false}
-            icon="email"
+          // <AppInputText
+          //   // defaultValue={value}
+          //   autoCapitalize="none"
+          //   autoCorrect={false}
+          //   icon="email"
+          //   placeholder="Email"
+          //   keyboardType="email-address"
+          //   textContentType="emailAddress"
+          //   onChangeText={onChange}
+          //   onBlur={onBlur}
+          //   value={value}
+          // />
+          <Input
             placeholder="Email"
-            keyboardType="email-address"
-            textContentType="emailAddress"
+            leftIcon={{
+              type: '',
+              name: 'email',
+              color: colors.primary,
+              size: 18,
+            }}
             onChangeText={onChange}
+            autoCompleteType={false}
             onBlur={onBlur}
             value={value}
           />
@@ -65,17 +79,30 @@ export default function LoginScreen({navigation}: any) {
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <AppInputText
-            autoCapitalize="none"
-            autoCorrect={false}
-            icon="lock"
+          // <AppInputText
+          //   autoCapitalize="none"
+          //   autoCorrect={false}
+          //   icon="lock"
+          //   placeholder="Password"
+          //   keyboardType="default"
+          //   secureTextEntry
+          //   textContentType="password"
+          //   onChangeText={onChange}
+          //   onBlur={onBlur}
+          //   value={value}
+          // />
+          <Input
             placeholder="Password"
-            keyboardType="default"
-            secureTextEntry
-            textContentType="password"
+            leftIcon={{
+              type: 'font-awesome',
+              name: 'lock',
+              color: colors.primary,
+            }}
             onChangeText={onChange}
+            autoCompleteType={false}
             onBlur={onBlur}
             value={value}
+            secureTextEntry
           />
         )}
         name="password"

@@ -3,12 +3,9 @@ import colors from 'config/color';
 
 export default StyleSheet.create({
   profileImage: {
-    width: 100,
-    height: 100,
+    backgroundColor: colors.primary,
     alignSelf: 'center',
-  },
-  profileIcon: {
-    alignSelf: 'center',
+    color: colors.white,
   },
   editIcon: {
     alignSelf: 'center',
