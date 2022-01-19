@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    set: hashPassword
+    // set: hashPassword
   },
   profileImage: {
     type: String,

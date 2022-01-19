@@ -10,6 +10,9 @@ import AppButton from '@components/AppButton';
 import Screen from '@components/Screen';
 import colors from '@config/color';
 import Styles from './Styles';
+import {signUpUser} from 'services/AuthService';
+import Toaster from 'utils/Toaster';
+import {RouteNames} from 'config/routes';
 
 const registerUserSchema = yup
   .object({
@@ -19,7 +22,7 @@ const registerUserSchema = yup
   })
   .required();
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}: any) => {
   const {
     control,
     handleSubmit,
@@ -30,7 +33,18 @@ const RegisterScreen = () => {
     resolver: yupResolver(registerUserSchema),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    signUpUser(data)
+      .then(res => {
+        Toaster.success({
+          title: res?.data?.message ?? 'Successfully Registered',
+        });
+        navigation.navigate(RouteNames.LOGIN);
+      })
+      .catch(err => {
+        Toaster.error({title: err?.message || 'Failed'});
+      });
+  };
 
   return (
     <Screen>

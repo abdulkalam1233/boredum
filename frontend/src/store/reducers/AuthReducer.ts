@@ -1,5 +1,5 @@
 import {RouteNames} from '@config/routes';
-import {UPDATE_USER_INFO} from '../constants';
+import {SET_LOGIN_AUTH, SET_LOGOUT_AUTH, UPDATE_USER_INFO} from '../constants';
 
 const initialSate = {
   authToken: '',
@@ -15,6 +15,19 @@ export default function (state = initialSate, action: any) {
       return {
         ...state,
         userInfo: payload.data,
+      };
+    }
+    case SET_LOGIN_AUTH: {
+      return {
+        ...state,
+        ...payload,
+      };
+    }
+    case SET_LOGOUT_AUTH: {
+      return {
+        ...state,
+        authToken: '',
+        initialRoute: RouteNames.WELCOME,
       };
     }
     default:

@@ -2,14 +2,14 @@ const {Router} = require('express');
 const { JWT } = require('../config');
 const { UserModal } = require('../database/models/user.model');
 const { generateToken } = require('../helpers/jwt.helper');
-const { matchPassword } = require('../helpers/password.helper');
+const { matchPassword, hashPassword } = require('../helpers/password.helper');
 const { validateEmail } = require('../utils/string.util');
 
 const authRouter = Router();
 
 authRouter.post('/auth/sign-up', 
 async (req,res,next)=>{
-    const {email, password, name, phone} = req.body;
+    const {email, password, name} = req.body;
     try{
         if(!email || !password || !name){
             return res.status(400).send({message: 'Validation failed. Email, password, name are required.'});
@@ -17,7 +17,7 @@ async (req,res,next)=>{
         if(!validateEmail(email)){
             return res.status(400).send({message: 'Please enter a valid email.'});
         }
-        const existingUser = UserModal.findOne({
+        const existingUser = await UserModal.findOne({
             email,
         });
         if (existingUser) {
@@ -25,6 +25,7 @@ async (req,res,next)=>{
                 message: 'User Already Exist',
             })
         }
+        const hashedPassword = await hashPassword(password);
         const modelInstance = new UserModal({
             name: name,
             email: email,
