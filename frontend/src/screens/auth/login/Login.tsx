@@ -7,9 +7,7 @@ import {useDispatch} from 'react-redux';
 import {Input} from 'react-native-elements';
 
 import AppButton from '@components/AppButton';
-// import AppInputText from '@components/AppInputText';
 import Screen from '@components/Screen';
-import FormErrorMessage from '@components/FormErrorMessage';
 import colors from '@config/color';
 import {UPDATE_USER_INFO} from '@store/constants';
 import {RouteNames} from '@config/routes';
@@ -45,18 +43,6 @@ export default function LoginScreen({navigation}: any) {
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          // <AppInputText
-          //   // defaultValue={value}
-          //   autoCapitalize="none"
-          //   autoCorrect={false}
-          //   icon="email"
-          //   placeholder="Email"
-          //   keyboardType="email-address"
-          //   textContentType="emailAddress"
-          //   onChangeText={onChange}
-          //   onBlur={onBlur}
-          //   value={value}
-          // />
           <Input
             placeholder="Email"
             leftIcon={{
@@ -69,28 +55,14 @@ export default function LoginScreen({navigation}: any) {
             autoCompleteType={false}
             onBlur={onBlur}
             value={value}
+            errorMessage={errors?.email?.message}
           />
         )}
         name="email"
       />
-      {errors?.email?.message && (
-        <FormErrorMessage error={errors?.email?.message} />
-      )}
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          // <AppInputText
-          //   autoCapitalize="none"
-          //   autoCorrect={false}
-          //   icon="lock"
-          //   placeholder="Password"
-          //   keyboardType="default"
-          //   secureTextEntry
-          //   textContentType="password"
-          //   onChangeText={onChange}
-          //   onBlur={onBlur}
-          //   value={value}
-          // />
           <Input
             placeholder="Password"
             leftIcon={{
@@ -103,13 +75,11 @@ export default function LoginScreen({navigation}: any) {
             onBlur={onBlur}
             value={value}
             secureTextEntry
+            errorMessage={errors?.password?.message}
           />
         )}
         name="password"
       />
-      {errors?.password?.message && (
-        <FormErrorMessage error={errors?.password?.message} />
-      )}
       <AppButton
         title={'Login'}
         color={colors.primary}

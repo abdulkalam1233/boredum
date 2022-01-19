@@ -7,8 +7,6 @@ import * as yup from 'yup';
 import {Input} from 'react-native-elements';
 
 import AppButton from '@components/AppButton';
-// import AppInputText from '@components/AppInputText';
-import FormErrorMessage from '@components/FormErrorMessage';
 import Screen from '@components/Screen';
 import colors from '@config/color';
 import Styles from './Styles';
@@ -39,17 +37,8 @@ const RegisterScreen = () => {
       <Image source={require('@assets/logo.png')} style={Styles.logo} />
       <Controller
         control={control}
-        // error={errors?.name}
         name="name"
         render={({field: {onChange, onBlur, value}}) => (
-          // <AppInputText
-          //   value={value}
-          //   onblur={onBlur}
-          //   onChangeText={onChange}
-          //   autoCapitalize="none"
-          //   autoCorrect={false}
-          //   placeholder={'Name'}
-          // />
           <Input
             placeholder="Name"
             leftIcon={{
@@ -62,10 +51,10 @@ const RegisterScreen = () => {
             autoCompleteType={false}
             onBlur={onBlur}
             value={value}
+            errorMessage={errors?.name?.message}
           />
         )}
       />
-      {errors?.name && <FormErrorMessage error={errors?.name?.message} />}
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
@@ -81,28 +70,14 @@ const RegisterScreen = () => {
             autoCompleteType={false}
             onBlur={onBlur}
             value={value}
+            errorMessage={errors?.email?.message}
           />
         )}
         name="email"
       />
-      {errors?.email?.message && (
-        <FormErrorMessage error={errors?.email?.message} />
-      )}
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          // <AppInputText
-          //   autoCapitalize="none"
-          //   autoCorrect={false}
-          //   // icon="lock"
-          //   placeholder="Password"
-          //   keyboardType="default"
-          //   secureTextEntry
-          //   textContentType="password"
-          //   onChangeText={onChange}
-          //   onBlur={onBlur}
-          //   value={value}
-          // />
           <Input
             placeholder="Password"
             leftIcon={{
@@ -115,13 +90,11 @@ const RegisterScreen = () => {
             onBlur={onBlur}
             value={value}
             secureTextEntry
+            errorMessage={errors?.password?.message}
           />
         )}
         name="password"
       />
-      {errors?.password?.message && (
-        <FormErrorMessage error={errors?.password?.message} />
-      )}
       <AppButton
         title={'Register'}
         color={colors.secondary}
