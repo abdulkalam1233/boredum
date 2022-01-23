@@ -9,16 +9,19 @@ import Toast from 'react-native-toast-message';
 import Storage from 'utils/storage';
 import {StorageKeys} from 'config/mapping';
 import {SET_LOGIN_AUTH} from 'store/constants';
+import Toaster from 'utils/Toaster';
+import {ActivityIndicator} from 'react-native';
 
 const App = () => {
   const initialRoute = useSelector((state: any) => state?.auth?.initialRoute);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    Storage.getData(StorageKeys.AUTH_KEY).then((authToken: any) => {
+  const checkTokenExists = async () => {
+    try {
+      const authToken = await Storage.getData(StorageKeys.AUTH_KEY);
       if (authToken) {
         axios.defaults.headers.common.Authorization = authToken;
-        dispatch({
+        await dispatch({
           type: SET_LOGIN_AUTH,
           payload: {
             authToken: authToken,
@@ -26,13 +29,34 @@ const App = () => {
             initialRoute: RouteNames.HOME,
           },
         });
+      } else {
+        await dispatch({
+          type: SET_LOGIN_AUTH,
+          payload: {
+            authToken: '',
+            oauth: null,
+            initialRoute: RouteNames.WELCOME,
+          },
+        });
       }
-    });
+    } catch (e) {
+      Toaster.error({title: e.message});
+    }
+  };
+
+  useEffect(() => {
+    checkTokenExists();
   });
 
   return (
     <>
-      <NavigationContainer>{AuthNavigator({initialRoute})}</NavigationContainer>
+      {initialRoute ? (
+        <NavigationContainer>
+          {AuthNavigator({initialRoute})}
+        </NavigationContainer>
+      ) : (
+        <ActivityIndicator style={{flex: 1, justifyContent: 'center'}} />
+      )}
       <Toast />
     </>
   );

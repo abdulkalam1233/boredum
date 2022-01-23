@@ -4,7 +4,7 @@ import {SET_LOGIN_AUTH, SET_LOGOUT_AUTH, UPDATE_USER_INFO} from '../constants';
 const initialSate = {
   authToken: '',
   userInfo: {},
-  initialRoute: RouteNames.WELCOME,
+  initialRoute: '',
 };
 
 export default function (state = initialSate, action: any) {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export class AxiosCall {
-  static async get(url: string, source: any, timeout = 0): Promise<any> {
+  static async get(url: string, source?: any, timeout = 0): Promise<any> {
     try {
       if (source) {
         const response = await axios.get(url, {

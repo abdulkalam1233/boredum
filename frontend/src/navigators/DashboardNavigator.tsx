@@ -2,10 +2,10 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import postList from '@screens/post/postList/PostList';
 import profile from '@screens/profile/Profile';
 import {RouteNames} from '@config/routes';
-import CreatePost from '@screens/post/createPost/CreatePost';
+import {BookNavigator} from './BookNavigator';
+import {PostNavigator} from './PostNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,33 +17,33 @@ export const DashboardNavigator = () => (
       tabBarInactiveTintColor: 'gray',
     }}>
     <Tab.Screen
-      name={RouteNames.FEEDS}
-      component={postList}
+      name={RouteNames.POSTS.TAB}
+      component={PostNavigator}
       options={() => ({
         tabBarIcon: ({color, size}) => {
-          let iconName = 'home';
+          let iconName = 'comment';
 
           // You can return any component that you like here!
           return (
             <MaterialCommunityIcons name={iconName} size={size} color={color} />
           );
         },
-        title: 'Home',
+        title: 'Posts',
       })}
     />
     <Tab.Screen
-      name={RouteNames.ADD_FEED}
-      component={CreatePost}
+      name={RouteNames.BOOKS.TAB}
+      component={BookNavigator}
       options={() => ({
         tabBarIcon: ({color, size}) => {
-          let iconName = 'plus-circle';
+          let iconName = 'book';
 
           // You can return any component that you like here!
           return (
             <MaterialCommunityIcons name={iconName} size={size} color={color} />
           );
         },
-        title: 'Add Feed',
+        title: 'Books',
       })}
     />
     <Tab.Screen

@@ -1,18 +1,21 @@
-import {StyleSheet} from 'react-native';
 import colors from 'config/color';
+import {StyleSheet} from 'react-native';
 
-export default StyleSheet.create({
+const Styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
     flex: 1,
+    backgroundColor: colors.white,
+  },
+  loader: {
+    flex: 1,
+    justifyContent: 'center',
   },
   logo: {
     width: 150,
     height: 80,
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 10,
-    // position: 'abso'
   },
   searchContainerStyle: {
     flex: 1,
@@ -42,3 +45,5 @@ export default StyleSheet.create({
   },
   searchAndAdd: {flexDirection: 'row', justifyContent: 'space-between'},
 });
+
+export default Styles;
