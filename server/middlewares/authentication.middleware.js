@@ -43,7 +43,7 @@ function isAuthenticated() {
     
     req.user = {
       email: payload.email,
-      name: payload.name,
+      id: payload.id
     };
     // req.current_role_id = payload.user.current_role_id;
 
